@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+// making new instance of sequelize, and telling it where our database lives. telling it to connect. running locally, postgres always lives on 5432. default.
 const db = new Sequelize('postgres://localhost:5432/wikistack', {
   logging: false
 });

@@ -5,6 +5,7 @@ const models = require('./models');
 
 const layout = require('./views/layout');
 
+// app is an instance of calling express. You only want one app. We can't make another app in a different file. (But we can have multiple routers!) We tell app to use routers, (e.g. use wikiRouter!) and we attach the routers to the app. We can attach multiple.
 const app = express();
 
 // requiring the routers from wiki.js and user.js, where our routes are stored.
@@ -31,14 +32,14 @@ app.get('/', (req, res) => {
 
 const PORT = 3000;
 
+
+// Our models are defined on our db; therefore we can call models.db.sync and it will sync both Page and User as well; alternatively, we could call them separately, but it is not needed.
 const init = async () => {
   await models.db.sync();
   app.listen(PORT, () => {
     console.log(`Server listening on Port ${PORT}`);
   })
 };
-
-// Our models are defined on our db; therefore we can call models.db.sync and it will sync both Page and User as well; alternatively, we could call them separately, but it is not needed.
 
 init();
 
